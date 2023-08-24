@@ -153,3 +153,20 @@ EOT
 ```
 
 </details>
+
+## Acknowlegements
+
+The computations described in this paper were performed using the University of Birmingham's BEAR Cloud service, which provides flexible resource for intensive computational work to the University's research community. See [BlueBEAR HPC](http://www.birmingham.ac.uk/bear) for more details.
+
+## Reference
+
+If you find our paper/this code useful for your project or research, we really appreciate that you could cite our work and accompanying paper. If you encounter any problem during installation or training, please feel free to contact us via [GitHub Issues](https://github.com/AVS-Net/AVS-Net/issues)
+
+```latex
+@inproceedings{avs-net,
+  title={AVS-Net: Attention-based Variable Splitting Network for P-MRI Acceleration},
+  author={Y Zhang, J Li, Z Wang, J Duan, and J Li},
+  booktitle={BIBM}
+  year={2023}
+}
+```

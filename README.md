@@ -2,21 +2,15 @@
 
 This repository contains an implementation of AVS-Net: Attention-based Variable Splitting Network for P-MRI Acceleration using PyTorch.
 
+a. For a standalone knee dataset download, visit <https://huggingface.co/datasets/AVS-Net/knee_fast_mri> on `huggingface dataset`.
+
+b. For the pre-trained inference inference, visit <https://huggingface.co/AVS-Net/AVS-Net-Inference> on `huggingface model`.
+
 ## Preliminary Steps
 
-### 1. Download the knee MRI Acceleration dataset (Optional)
+### 1. Clone the source code and dataset submodules
 
-For those who require an independent download of the knee dataset, the `git lfs` tool can be utilized. The dataset is available on the `huggingface` datasets platform. Use the following commands:
-
-```bash
-# Ensure git-lfs is installed (https://git-lfs.com)
-git lfs install
-git clone -j8 git@hf.co:datasets/AVS-Net/knee_fast_mri
-```
-
-### 2. Clone the source code and dataset submodules
-
-To conveniently clone both the source code and the dataset together, use submodules. The following command combines the dataset download and source code cloning in one step, effectively skipping the step \[1\] described above.
+To conveniently clone both the source code and the dataset together, use submodules. The following command combines the dataset download and source code cloning in one step, effectively skipping the dataset downloading described above.
 
 ```bash
 # Ensure git-lfs is installed (https://git-lfs.com)
@@ -24,7 +18,7 @@ git lfs install
 git clone --recurse-submodules -j8 https://github.com/AVS-Net/AVS-Net.git
 ```
 
-### 3. Install dependencies
+### 2. Install dependencies
 
 Ensure Python version 3.8 or later is installed. Dependencies can be installed either using pip or conda:
 
@@ -39,27 +33,35 @@ conda install pytorch=1.7 torchvision torchaudio -c pytorch
 conda install matplotlib h5py scipy scikit-image tensorboard
 ```
 
-## Training AVS-Net
+### 3.1 Simple setup
 
-To train the AVS-Net on a general-purpose environment, single NVIDIA A100 GPU on an amd64 platform can be used:
+To run the AVS-Net on a general-purpose environment.
+
+<details>
+
+For example, with a single NVIDIA A100 80G graphic card on the amd64 platform can be used:
 
 ```bash
 cd avs-net && CUDA_VISIBLE_DEVICES=0 python avs-net.py
 ```
 
-### Logging training with TensorBoard
+#### Logging with TensorBoard
 
-To monitor the training process, visit localhost:6006 in your browser. Use the following command to start Tensorboard:
+To monitor the process, visit localhost:6006 in your browser. Use the following command to start Tensorboard:
 
 ```bash
 tensorboard --logdir tensorboard_log
 ```
 
-## Working on the BlueBEAR HPC
+</details>
 
-Please note that BlueBEAR is an IBM Power9 Series High Performance Computing system with ppcle-64 architecture.
+### 3.2 Working on the BlueBEAR HPC
 
-### General purpose usage on the terminal
+Please note that BlueBEAR is an IBM Power9 Series High Performance Computing system with ppcle-64 architecture, where We work on for this model. The following instructions are provided for reference.
+
+<details>
+
+#### General purpose usage on the terminal
 
 After allocating requisite computational resources on a given node using `Slurm`, execute the following command:
 
@@ -70,7 +72,7 @@ cd avs-net && CUDA_VISIBLE_DEVICES=0 python avs-net.py
 
 Please be mindful that the connection can be interrupted at any time, which may result in the termination of the training process.
 
-### Utilizing Multiplexer with TMUX
+#### Utilizing Multiplexer with TMUX
 
 For handling deep learning tasks in the background, especially during debugging, it is recommended to use `tmux` or `screen`.
 
@@ -91,3 +93,57 @@ cd avs-net && CUDA_VISIBLE_DEVICES=0 python avs-net.py
 # You can now close the laptop and return in 2 days
 tmux -CC attach
 ```
+
+#### Online debugging with CodeServer
+
+It's more than a chanllege to debug a deep learning model on the `ppcle-64` enviroment. Use `Code-Sever` Enforcement can benefit a lot for further experiments.
+
+- Load module
+
+```bash
+module purge; module load bluebear;
+module load module load bear-apps/2020b  &> /dev/null;
+module load Python/3.8.6-GCCcore-10.2.0 &> /dev/null;
+module load nodejs/14.16.1-GCCcore-10.2.0 &> /dev/null;
+module load git/2.28.0-GCCcore-10.2.0-nodocs  &> /dev/null;
+```
+
+- Install and config
+
+```bash
+mkdir -p ~/.Library
+npm install --global --prefix ~/.Library/ yarn
+yarn global add typescript
+yarn global add @google-cloud/logging
+echo 'export PATH=~/.yarn/bin:$PATH' >> ~/.bashrc
+```
+
+- Modify sbatch script
+
+```bash
+cat > run_code_server.sh <<'EOT'
+#!/bin/bash
+module purge; module load bluebear;
+module load bear-apps/2020b &> /dev/null;
+module load PyTorch h5py nodejs git &> /dev/null;
+export PASSWORD=duanj
+work_dir="$HOME/special"
+data_dir="$HOME/.vscode"
+if  ! [ -d $work_dir ]; then
+    mkdir $work_dir
+fi
+if  ! [ -d $data_dir ]; then
+    mkdir $data_dir
+fi
+
+code-server \
+    --auth=password \
+--port=$port \
+--disable-telemetry \
+--extra-extensions-dir="$data_dir/extensions" \
+--user-data-dir="$data_dir" \
+"$work_dir"
+EOT
+```
+
+</details>

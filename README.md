@@ -6,6 +6,10 @@ a. For a standalone knee dataset download, visit <https://huggingface.co/dataset
 
 b. For the pre-trained inference inference, visit <https://huggingface.co/AVS-Net/AVS-Net-Inference> on `huggingface model`.
 
+![AVS-Net Structure](results/AVS-Net.png)
+
+Above outline the architecture of the `AVS-Net` on the paper.
+
 ## Preliminary Steps
 
 ### 1. Clone the source code and dataset submodules

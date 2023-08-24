@@ -4,7 +4,7 @@ This repository contains an implementation of AVS-Net: Attention-based Variable 
 
 a. For a standalone knee dataset download, visit <https://huggingface.co/datasets/AVS-Net/knee_fast_mri> on `huggingface dataset`.
 
-b. For the pre-trained inference inference, visit <https://huggingface.co/AVS-Net/AVS-Net-Inference> on `huggingface model`.
+b. For the pre-trained inference model, visit <https://huggingface.co/AVS-Net/AVS-Net-Inference> on `huggingface model`.
 
 ![AVS-Net Structure](results/AVS-Net.png)
 

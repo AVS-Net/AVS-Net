@@ -39,9 +39,9 @@ conda install matplotlib h5py scipy scikit-image tensorboard
 
 ### 3.1 Simple setup
 
-To run the AVS-Net on a general-purpose environment.
-
 <details>
+
+<summary> To run the AVS-Net on a general-purpose environment. </summary>
 
 For example, with a single NVIDIA A100 80G graphic card on the amd64 platform can be used:
 
@@ -61,11 +61,13 @@ tensorboard --logdir tensorboard_log
 
 ### 3.2 Working on the BlueBEAR HPC
 
-Please note that BlueBEAR is an IBM Power9 Series High Performance Computing system with ppcle-64 architecture, where we work on for this model. The following instructions are provided for reference.
+Please note that BlueBEAR is an IBM Power9 Series High Performance Computing system with ppcle-64 architecture, where we work on for this model.
 
 <details>
 
-#### General purpose usage on the terminal
+<summary>The following instructions are provided for reference.</summary>
+
+#### Run on the terminal
 
 After allocating requisite computational resources on a given node using `Slurm`, execute the following command:
 

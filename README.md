@@ -8,7 +8,7 @@ b. For the pre-trained inference inference, visit <https://huggingface.co/AVS-Ne
 
 ![AVS-Net Structure](results/AVS-Net.png)
 
-Above outline the architecture of the `AVS-Net` on the paper.
+Above outlines the architecture of our `AVS-Net` in the paper.
 
 ## Preliminary Steps
 
@@ -61,7 +61,7 @@ tensorboard --logdir tensorboard_log
 
 ### 3.2 Working on the BlueBEAR HPC
 
-Please note that BlueBEAR is an IBM Power9 Series High Performance Computing system with ppcle-64 architecture, where We work on for this model. The following instructions are provided for reference.
+Please note that BlueBEAR is an IBM Power9 Series High Performance Computing system with ppcle-64 architecture, where we work on for this model. The following instructions are provided for reference.
 
 <details>
 
@@ -100,7 +100,7 @@ tmux -CC attach
 
 #### Online debugging with CodeServer
 
-It's more than a chanllege to debug a deep learning model on the `ppcle-64` enviroment. Use `Code-Sever` Enforcement can benefit a lot for further experiments.
+It's more than a chanllege to debug a deep learning model on the `ppcle-64` enviroment. Use `Code-Sever` enforcement can benefit a lot for further experiments.
 
 - Load module
 

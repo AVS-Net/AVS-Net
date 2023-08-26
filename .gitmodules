@@ -1,0 +1,3 @@
+[submodule "dataset/knee_fast_mri"]
+	path = dataset/knee_fast_mri
+	url = git@hf.co:datasets/AVS-Net/knee_fast_mri

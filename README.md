@@ -1,6 +1,6 @@
 # AVS-Net
 
-This repository contains an implementation of AVS-Net: Attention-based Variable Splitting Network for P-MRI Acceleration using PyTorch.
+This repository contains an implementation of **AVS-Net: Attention-based Variable Splitting Network for P-MRI Acceleration using PyTorch**.
 
 a. For a standalone knee dataset download, visit <https://huggingface.co/datasets/AVS-Net/knee_fast_mri> on `huggingface dataset`.
 
@@ -165,8 +165,8 @@ If you find our paper/this code useful for your project or research, we really a
 ```latex
 @inproceedings{avs-net,
   title={AVS-Net: Attention-based Variable Splitting Network for P-MRI Acceleration},
-  author={Y Zhang, J Li, Z Wang, J Duan, and J Li},
-  booktitle={BIBM}
+  author={Y.Zhang, J.Li, Z.Wang, J.Duan, and J.Li},
+  booktitle={BIBM},
   year={2023}
 }
 ```
